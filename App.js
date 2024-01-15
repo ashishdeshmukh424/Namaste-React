@@ -5,7 +5,7 @@
 
 
 // ================================================
-// // write below code using react
+// // write below code using react and use React from CDN 
 
 // // <div id="parent">
 // //     <div id="child">
@@ -26,4 +26,16 @@
 // root.render(parent);
 
 // ================================================================
+// importing React and React-Dom from node modules
 
+import React from "react";
+import ReactDOM from "react-dom/client"
+const parent = React.createElement("div", {id:"parent"}, 
+React.createElement("div", {id:"child"}, [
+    React.createElement("h1", {id:"heading1"}, "Hi from child 1"),
+    React.createElement("h2", {id:"heading2"}, "Hi from child 2")
+])
+);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(parent);

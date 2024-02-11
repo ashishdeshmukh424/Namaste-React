@@ -1,71 +1,57 @@
-// const heading = React.createElement("h1", {}, "Helloo World From React!");
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// root.render(heading);
-
-// ================================================
-// // write below code using react and use React from CDN
-
-// // <div id="parent">
-// //     <div id="child">
-// //         <h1> Hi from child 1</h1>
-// //         <h1> Hi from child 2</h1>
-// //     </div>
-
-// // </div>
-
-// const parent = React.createElement("div", {id:"parent"},
-// React.createElement("div", {id:"child"}, [
-//     React.createElement("h1", {id:"heading1"}, "Hi from child 1"),
-//     React.createElement("h2", {id:"heading2"}, "Hi from child 2")
-// ])
-// );
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// root.render(parent);
-
-// ================================================================
-// importing React and React-Dom from node modules
-
-// import React from "react";
-// import ReactDOM from "react-dom/client"
-// const parent = React.createElement("div", {id:"parent"},
-// React.createElement("div", {id:"child"}, [
-//     React.createElement("h1", {id:"heading1"}, "Hi from child 1"),
-//     React.createElement("h2", {id:"heading2"}, "Hi from child 2")
-// ])
-// );
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// root.render(parent);
-
-// ================================================================
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// JSX => Babel transpiles it to React.createElement => ReactElement-JS object => HTMLElement(render)
-// React Element
-// const jsxHeading = (
-//   <h1 className="head" tabIndex="5">
-//     Namaste React from JSX
-//   </h1>
-// );
-
-const Title = () => (
-  <h1 className="head" tabIndex="5">
-    Namaste React from Title Component
-  </h1>
-);
-// React Functional Component
-const HeadingComponent = () => (
-    <div id="container">
-        <Title />
-        <h1 className="heading"> Namaste React Functional Component</h1>
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img
+          className="logo"
+          src="https://assets.materialup.com/uploads/61d86780-be13-47fa-81a6-226aac22db27/preview.jpg"
+        />
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
     </div>
-);
+  );
+};
+
+const RestaurantCard = ({resName,resItem}) => {
+    return (
+        <div className="restro-card">
+            <img className="restro-card-logo" src="https://th.bing.com/th?id=OIP.7AAjFoxeiR7aaw4w0xR8YwHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" />
+            <h3>{resName}</h3>
+            <h4>{resItem}</h4>
+            <h4>4.4 start</h4>
+            <h4>30 min</h4>
+
+        </div>
+    );
+};
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search-container">search</div>
+      <div className="restro-container">
+        <RestaurantCard resName="City Pride" resItem="Biryani, Chinies"/>
+        <RestaurantCard resName="KFC" resItem="Burger"/>
+      </div>
+    </div>
+  );
+};
+const AppData = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Body />
+    </div>
+  );
+};
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// root.render(jsxHeading);
-root.render(<HeadingComponent />);
-
+root.render(<AppData />);

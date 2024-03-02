@@ -1,5 +1,4 @@
-export const respData = {
-    "restaurants": [
+export const respData = [
         {
             "info": {
                 "id": "278214",
@@ -1332,5 +1331,4 @@ export const respData = {
                 "type": "WEBLINK"
             }
         }
-    ],
-}
+    ];

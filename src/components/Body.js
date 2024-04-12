@@ -15,16 +15,14 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.003354466025122&lng=73.75542607158422&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.003354466025122&lng=73.75542607158422&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-  console.log('json==>>', json.data);
 
     setRestrontList(
-      json.data.cards[2].card.card?.gridElements?.infoWithStyle.restaurants
+      json.data.cards[1].card.card?.gridElements?.infoWithStyle.restaurants
     );
     setFilterRestarant(
-      json.data.cards[2].card.card?.gridElements?.infoWithStyle.restaurants
+      json.data.cards[1].card.card?.gridElements?.infoWithStyle.restaurants
     );
   };
 
@@ -66,9 +64,8 @@ const Body = () => {
         Top rated Restorant
       </button>
       <div className="restro-container">
-        {filterRestarant.length != 0 ? (
+        {filterRestarant && filterRestarant?.length != 0 ? (
           filterRestarant.map((restaurant) => {
-            console.log('restaurant==>>', restaurant);
             return(
             <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}><RestaurantCard
               restaurant={restaurant.info}

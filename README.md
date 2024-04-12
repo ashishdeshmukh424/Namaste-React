@@ -26,3 +26,15 @@ import Component from "path";
 -Named Export/Import
 export const Component;
 import {Component} from "path";
+
+# Lazy Loading / on demand loading / Dynamic import
+- Syntax
+- import React, {lazy, Suspense} from "react";
+- for lazy loading we need suspense for route upto lazy loading complete that load js file.
+-  {
+-    path: "/xyz",
+-   element: {
+-        <Suspense fallback={<h1> Loading screen... </h1>}> <xyz /> </Suspense>
+-    }
+- }
+- const xyz = lazy( () => import("path_of_xyz_component"));

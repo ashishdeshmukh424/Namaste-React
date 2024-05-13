@@ -38,3 +38,14 @@ import {Component} from "path";
 -    }
 - }
 - const xyz = lazy( () => import("path_of_xyz_component"));
+
+# How to add CSS in Application
+
+- css
+- scss or SASS
+- styled-components
+- material ui
+- bootstrap
+- chakra UI
+- Ant design
+- Telvint

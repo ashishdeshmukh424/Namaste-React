@@ -31,15 +31,17 @@ const Body = () => {
     <ShimmerUi />
   ) : (
     <div className="body">
-      <div className="search-container">
+      <div className="p-4 m-4">
         <input
           type="text"
+          className="border border-solid border-black"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
         <button
+        className="search px-4 py-1 bg-green-100 m-4 rounded-lg"
           onClick={() => {
             const filterRestro = restrontList.filter((restaurant) =>
               restaurant.info.name
@@ -51,8 +53,10 @@ const Body = () => {
         >
           Search
         </button>
-      </div>
-      <button
+        <div
+     className="search m-4 p-4 flex items-center">
+     <button
+      className="px-4 py-2 bg-gray-100"
         onClick={() => {
           const filterRestroList = restrontList.filter(
             (restro) => restro.info.avgRating > 4.5
@@ -63,7 +67,10 @@ const Body = () => {
       >
         Top rated Restorant
       </button>
-      <div className="restro-container">
+     </div>
+      </div>
+     
+      <div className="flex flex-wrap">
         {filterRestarant && filterRestarant?.length != 0 ? (
           filterRestarant.map((restaurant) => {
             return(

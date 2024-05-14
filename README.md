@@ -49,3 +49,7 @@ import {Component} from "path";
 - chakra UI
 - Ant design
 - Telvint
+
+# Higher Order Component
+- HOC = Higher Order Component
+- HOC is a function which takes component as input and return component

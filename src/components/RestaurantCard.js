@@ -14,4 +14,20 @@ const RestaurantCard = (restaurant) => {
     );
 };
 
+
+// Higer Ordewr Component
+
+// input - RestaurantCard ==>> (o/p) RestaurantCard+Veg label
+
+export const VegLabelRestaurantCard = (RestaurantCard) => { 
+    return (restaurant) => {
+        return (
+        <div>
+        <label className="absolute bg-gray-400 text-white m-2 p-2 rounded-lg">Veg</label>
+        <RestaurantCard {...restaurant}/> 
+        </div>
+    );
+};
+}
+
 export default RestaurantCard;

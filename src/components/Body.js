@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import RestaurantCard from "./RestaurantCard";
-import { respData } from "../utils/mockData";
-import { isEmpty } from "lodash";
+import RestaurantCard, { VegLabelRestaurantCard } from "./RestaurantCard";
 import ShimmerUi from "./ShimmerUi";
 import { Link } from "react-router-dom";
 const Body = () => {
   const [restrontList, setRestrontList] = useState([]);
   const [filterRestarant, setFilterRestarant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardVegLable = VegLabelRestaurantCard(RestaurantCard);
   useEffect(() => {
     fetchData();
   }, []);
@@ -26,7 +26,6 @@ const Body = () => {
     );
   };
 
-
   return restrontList?.length === 0 ? (
     <ShimmerUi />
   ) : (
@@ -41,7 +40,7 @@ const Body = () => {
           }}
         />
         <button
-        className="search px-4 py-1 bg-green-100 m-4 rounded-lg"
+          className="search px-4 py-1 bg-green-100 m-4 rounded-lg"
           onClick={() => {
             const filterRestro = restrontList.filter((restaurant) =>
               restaurant.info.name
@@ -53,31 +52,39 @@ const Body = () => {
         >
           Search
         </button>
-        <div
-     className="search m-4 p-4 flex items-center">
-     <button
-      className="px-4 py-2 bg-gray-100"
-        onClick={() => {
-          const filterRestroList = restrontList.filter(
-            (restro) => restro.info.avgRating > 4.5
-          );
+        <div className="search m-4 p-4 flex items-center">
+          <button
+            className="px-4 py-2 bg-gray-100"
+            onClick={() => {
+              const filterRestroList = restrontList.filter(
+                (restro) => restro.info.avgRating > 4.5
+              );
 
-          setFilterRestarant(filterRestroList);
-        }}
-      >
-        Top rated Restorant
-      </button>
-     </div>
+              setFilterRestarant(filterRestroList);
+            }}
+          >
+            Top rated Restorant
+          </button>
+        </div>
       </div>
-     
+
       <div className="flex flex-wrap">
         {filterRestarant && filterRestarant?.length != 0 ? (
           filterRestarant.map((restaurant) => {
-            return(
-            <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}><RestaurantCard
-              restaurant={restaurant.info}
-            /></Link>
-          )})
+            return (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurant/" + restaurant.info.id}
+              >
+                {/* if veg: true add label veg restro */}
+                {restaurant.info?.veg ? (
+                  <RestaurantCardVegLable restaurant={restaurant.info} />
+                ) : (
+                  <RestaurantCard restaurant={restaurant.info} />
+                )}
+              </Link>
+            );
+          })
         ) : (
           <h1>No Restaurant Found</h1>
         )}

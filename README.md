@@ -53,3 +53,10 @@ import {Component} from "path";
 # Higher Order Component
 - HOC = Higher Order Component
 - HOC is a function which takes component as input and return component
+
+# Context hook in class based component
+- import {UserContext} from "../../UserContext"
+- <div>
+- <UserContext.Consumer>
+- {({loggedInUser}) => <h1>{loggedInUser}</h1>}
+- </UserContext.Consumer>

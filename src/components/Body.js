@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import RestaurantCard, { VegLabelRestaurantCard } from "./RestaurantCard";
 import ShimmerUi from "./ShimmerUi";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
+
 const Body = () => {
   const [restrontList, setRestrontList] = useState([]);
   const [filterRestarant, setFilterRestarant] = useState([]);
@@ -26,32 +28,36 @@ const Body = () => {
     );
   };
 
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   return restrontList?.length === 0 ? (
     <ShimmerUi />
   ) : (
     <div className="body">
-      <div className="p-4 m-4">
-        <input
-          type="text"
-          className="border border-solid border-black"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-          className="search px-4 py-1 bg-green-100 m-4 rounded-lg"
-          onClick={() => {
-            const filterRestro = restrontList.filter((restaurant) =>
-              restaurant.info.name
-                .toLowerCase()
-                .includes(searchText.toLowerCase())
-            );
-            setFilterRestarant(filterRestro);
-          }}
-        >
-          Search
-        </button>
+      <div className="filter flex">
+        <div className="search m-4 p-4">
+          <input
+            type="text"
+            className="border border-solid border-black p-2"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+            onClick={() => {
+              const filterRestro = restrontList.filter((restaurant) =>
+                restaurant.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase())
+              );
+              setFilterRestarant(filterRestro);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <div className="search m-4 p-4 flex items-center">
           <button
             className="px-4 py-2 bg-gray-100"
@@ -65,6 +71,13 @@ const Body = () => {
           >
             Top rated Restorant
           </button>
+        </div>
+        <div className="m-4 p-4 flex items-center">
+          <input
+            className="border border-black p-2"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
 

@@ -1,4 +1,10 @@
-# Namaste React By Akshay Saini
+# For Running Project Use following Commands
+
+- git clone
+- npm install
+- npm start
+
+# React Short Notes
 
 # Parcel
 - Dev Build
@@ -23,7 +29,7 @@
 export default Component;
 import Component from "path";
 
--Named Export/Import
+- Named Export/Import
 export const Component;
 import {Component} from "path";
 
@@ -60,3 +66,26 @@ import {Component} from "path";
 - <UserContext.Consumer>
 - {({loggedInUser}) => <h1>{loggedInUser}</h1>}
 - </UserContext.Consumer>
+
+# Redux ToolKit(RTK)
+
+- For Write the data into redux store ---
+- For making changes into redux store we don't modify directly store data.
+- We need to create dispatch(action) and that dispatch call the reducer function for that updated the value of store data.
+- Example - onclick ADD button -> dispatch(action) -> funtion(reducer) -> store value
+
+- For read the data from redux store ---
+- For getting the data from redux store we will use selector(subscribing to the store).
+- Example - updated cart <- selector(subscribing to the store) <- store value
+- Example - useSelector((state) => state.counter.value) -> return value of counter value from store
+
+ ## Process for adding RTK into project
+ - npm install @reduxjs/toolkit and react-redux
+ - Build our store
+ - Connect our store to our app
+ - create Slice(cartSlice)
+ - dispatch()(action)
+ - Selector
+
+ ## imp notes for Redux
+ - Always subscribe the specific portion of store for better performance.
